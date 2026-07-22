@@ -1,0 +1,184 @@
+-- Project ScriptX GUI
+-- Place in StarterGui or run via LocalScript
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create ScreenGui
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ProjectScriptX"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.Parent = PlayerGui
+
+-- Backdrop blur frame
+local Backdrop = Instance.new("Frame")
+Backdrop.Name = "Backdrop"
+Backdrop.Size = UDim2.new(1, 0, 1, 0)
+Backdrop.Position = UDim2.new(0, 0, 0, 0)
+Backdrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Backdrop.BackgroundTransparency = 0.5
+Backdrop.BorderSizePixel = 0
+Backdrop.ZIndex = 1
+Backdrop.Parent = ScreenGui
+
+-- Main popup frame
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 420, 0, 220)
+MainFrame.Position = UDim2.new(0.5, -210, 0.5, -110)
+MainFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
+MainFrame.BorderSizePixel = 0
+MainFrame.ZIndex = 2
+MainFrame.Parent = ScreenGui
+
+-- Corner rounding
+local MainCorner = Instance.new("UICorner")
+MainCorner.CornerRadius = UDim.new(0, 12)
+MainCorner.Parent = MainFrame
+
+-- Accent top bar
+local TopBar = Instance.new("Frame")
+TopBar.Name = "TopBar"
+TopBar.Size = UDim2.new(1, 0, 0, 4)
+TopBar.Position = UDim2.new(0, 0, 0, 0)
+TopBar.BackgroundColor3 = Color3.fromRGB(88, 101, 242) -- Discord blurple
+TopBar.BorderSizePixel = 0
+TopBar.ZIndex = 3
+TopBar.Parent = MainFrame
+
+local TopBarCorner = Instance.new("UICorner")
+TopBarCorner.CornerRadius = UDim.new(0, 12)
+TopBarCorner.Parent = TopBar
+
+-- Logo/icon label (Discord icon substitute)
+local IconLabel = Instance.new("TextLabel")
+IconLabel.Name = "IconLabel"
+IconLabel.Size = UDim2.new(0, 40, 0, 40)
+IconLabel.Position = UDim2.new(0.5, -20, 0, 22)
+IconLabel.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+IconLabel.BorderSizePixel = 0
+IconLabel.Text = "✦"
+IconLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+IconLabel.TextScaled = true
+IconLabel.Font = Enum.Font.GothamBold
+IconLabel.ZIndex = 3
+IconLabel.Parent = MainFrame
+
+local IconCorner = Instance.new("UICorner")
+IconCorner.CornerRadius = UDim.new(1, 0)
+IconCorner.Parent = IconLabel
+
+-- Title label
+local TitleLabel = Instance.new("TextLabel")
+TitleLabel.Name = "TitleLabel"
+TitleLabel.Size = UDim2.new(1, -40, 0, 30)
+TitleLabel.Position = UDim2.new(0, 20, 0, 70)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Text = "Project ScriptX"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.TextScaled = true
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.ZIndex = 3
+TitleLabel.Parent = MainFrame
+
+-- Subtitle
+local SubLabel = Instance.new("TextLabel")
+SubLabel.Name = "SubLabel"
+SubLabel.Size = UDim2.new(1, -40, 0, 22)
+SubLabel.Position = UDim2.new(0, 20, 0, 104)
+SubLabel.BackgroundTransparency = 1
+SubLabel.Text = "Script is available on our Discord server."
+SubLabel.TextColor3 = Color3.fromRGB(160, 160, 180)
+SubLabel.TextScaled = true
+SubLabel.Font = Enum.Font.Gotham
+SubLabel.ZIndex = 3
+SubLabel.Parent = MainFrame
+
+-- Discord link button
+local DISCORD_LINK = "https://discord.gg/NGad9DXYxx"
+
+local LinkButton = Instance.new("TextButton")
+LinkButton.Name = "LinkButton"
+LinkButton.Size = UDim2.new(1, -40, 0, 42)
+LinkButton.Position = UDim2.new(0, 20, 0, 140)
+LinkButton.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+LinkButton.BorderSizePixel = 0
+LinkButton.Text = "📋  Copy Discord Link"
+LinkButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+LinkButton.TextScaled = true
+LinkButton.Font = Enum.Font.GothamBold
+LinkButton.ZIndex = 3
+LinkButton.Parent = MainFrame
+
+local LinkButtonCorner = Instance.new("UICorner")
+LinkButtonCorner.CornerRadius = UDim.new(0, 8)
+LinkButtonCorner.Parent = LinkButton
+
+-- Close button (X)
+local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "CloseButton"
+CloseButton.Size = UDim2.new(0, 28, 0, 28)
+CloseButton.Position = UDim2.new(1, -36, 0, 10)
+CloseButton.BackgroundColor3 = Color3.fromRGB(40, 40, 52)
+CloseButton.BorderSizePixel = 0
+CloseButton.Text = "✕"
+CloseButton.TextColor3 = Color3.fromRGB(160, 160, 180)
+CloseButton.TextScaled = true
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.ZIndex = 4
+CloseButton.Parent = MainFrame
+
+local CloseCorner = Instance.new("UICorner")
+CloseCorner.CornerRadius = UDim.new(0, 6)
+CloseCorner.Parent = CloseButton
+
+-- Hover effects for link button
+LinkButton.MouseEnter:Connect(function()
+	LinkButton.BackgroundColor3 = Color3.fromRGB(71, 82, 196)
+end)
+
+LinkButton.MouseLeave:Connect(function()
+	LinkButton.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+end)
+
+-- Hover for close button
+CloseButton.MouseEnter:Connect(function()
+	CloseButton.BackgroundColor3 = Color3.fromRGB(220, 60, 60)
+	CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+end)
+
+CloseButton.MouseLeave:Connect(function()
+	CloseButton.BackgroundColor3 = Color3.fromRGB(40, 40, 52)
+	CloseButton.TextColor3 = Color3.fromRGB(160, 160, 180)
+end)
+
+-- Copy to clipboard on click
+LinkButton.MouseButton1Click:Connect(function()
+	setclipboard(DISCORD_LINK)
+
+	-- Visual feedback: button text changes briefly
+	local originalText = LinkButton.Text
+	LinkButton.Text = "✔  Copied to Clipboard!"
+	LinkButton.BackgroundColor3 = Color3.fromRGB(59, 165, 92) -- green confirm
+
+	task.delay(2, function()
+		if LinkButton and LinkButton.Parent then
+			LinkButton.Text = originalText
+			LinkButton.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+		end
+	end)
+end)
+
+-- Close button dismisses the popup
+CloseButton.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
+
+-- Optional: backdrop click also closes
+Backdrop.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		ScreenGui:Destroy()
+	end
+end)
