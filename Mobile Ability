@@ -1,0 +1,16 @@
+local remote = game:GetService("ReplicatedStorage")
+    :WaitForChild("Packages")
+    :WaitForChild("_Index")
+    :WaitForChild("sleitnick_knit@1.7.0")
+    :WaitForChild("knit")
+    :WaitForChild("Services")
+    :WaitForChild("SeasonService")
+    :WaitForChild("RF")
+    :WaitForChild("RequestRankedReward")
+
+task.spawn(function()
+    while true do
+        pcall(function() remote:InvokeServer(4) end)
+        task.wait(1.5)
+    end
+end)
